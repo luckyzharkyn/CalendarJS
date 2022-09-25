@@ -1,4 +1,24 @@
-p {
-    color: red;
-    border: 1px solid black;
+.month {
+    width: 500px;
+    border: 1px solid red;
+    padding: 10px;
+    .week {
+        display: flex;
+        justify-content: space-between;
+        .day {
+            width: 100%;
+            font-size: 20px;
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+            &-name {
+                width: 100%;
+                font-size: 15px;
+                border: 1px solid black;
+                text-align: center;
+                padding: 10px 0;
+                color: red;
+            }
+        }
+    }
 }
