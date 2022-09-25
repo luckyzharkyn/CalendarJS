@@ -3,10 +3,10 @@ let date = new Date()
 let month = document.querySelector(".month");
 let days = document.querySelector(".days");
 
-// let thisYear = date.getFullYear();
-// let thisMonth = date.getMonth()
-let thisYear = 2023;
-let thisMonth = 0;
+let thisYear = date.getFullYear();
+let thisMonth = date.getMonth()
+// let thisYear = 2023;
+// let thisMonth = 0;
 
 go();
 function go(newDays = days) {
@@ -22,21 +22,31 @@ function go(newDays = days) {
         let week = renderWeek()  // элемент div с классом week
         for(let j = rememberDay; j <= lastDay; j++) {
             if(limit < 7) {
-                if(nulldaysStart < get_Start_First_Day_OfMonth(thisYear, thisMonth)) {
-                    for(let k = 0; k < get_Start_First_Day_OfMonth(thisYear, thisMonth); k++) {
-                        week.appendChild(renderDay(null))
-                        limit++; 
-                        nulldaysStart++;
+                if(nulldaysStart <= get_Start_First_Day_OfMonth(thisYear, thisMonth)) { // рисуем пустые в начале
+                    if(get_Start_First_Day_OfMonth(thisYear, thisMonth) == 0) {
+                        for(let k = 0; k < 6; k++) {
+                            week.appendChild(renderDay(null))
+                            limit++; 
+                            nulldaysStart++;
+                        }
+                    } else {
+                        for(let k = 1; k < get_Start_First_Day_OfMonth(thisYear, thisMonth); k++) {
+                            week.appendChild(renderDay(null))
+                            limit++; 
+                            nulldaysStart+=2;
+
+                        }
                     }
+                    nulldaysStart++;
                 }
 
                 if(j == lastDay) { // в последнем дне 
                     week.appendChild(renderDay(j))
-                    if(7 - limit+1 != 7) {      // рисуем пустые после последнего
-                        for(let c = 1; c < 7 - limit; c++) {
-                            week.appendChild(renderDay(null))
-                        }
+                    // рисуем пустые после последнего
+                    for(let c = 1; c < 7 - limit; c++) {
+                        week.appendChild(renderDay(null))
                     }
+                    
                     stop = true;
                 } else {
                     week.appendChild(renderDay(j))
