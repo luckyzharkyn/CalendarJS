@@ -3,8 +3,13 @@ let date = new Date()
 let month = document.querySelector(".month");
 let days = document.querySelector(".days");
 
+let inputYear = document.querySelector(".inputYear");
+let inputMonth = document.querySelector(".inputMonth");
+
 let thisYear = date.getFullYear();
 let thisMonth = date.getMonth()
+inputYear.value = thisYear;
+inputMonth.value = thisMonth + 1;
 // let thisYear = 2023;
 // let thisMonth = 0;
 
@@ -101,6 +106,8 @@ monthMinus.addEventListener("click", function() {
     } else {
         thisMonth--;
     }
+    inputYear.value = thisYear;
+    inputMonth.value = thisMonth + 1;
     go(newTable())
 })
 monthPlus.addEventListener("click", function() {
@@ -110,8 +117,11 @@ monthPlus.addEventListener("click", function() {
     } else {
         thisMonth++;
     }
+    inputYear.value = thisYear;
+    inputMonth.value = thisMonth + 1;
     go(newTable())
 })
+
 // обновляет каленьдар
 function newTable() {
     let days = document.querySelector(".days");
@@ -122,4 +132,18 @@ function newTable() {
     return newDays
 }
 
+
+inputYear.addEventListener("keyup", function(event) {
+    if(event.keyCode == 13) {
+        thisYear = event.target.value;
+        go(newTable())
+    }
+})
+
+inputMonth.addEventListener("keyup", function(event) {
+    if(event.keyCode == 13) {
+        thisMonth = event.target.value - 1;
+        go(newTable())
+    }
+})
 

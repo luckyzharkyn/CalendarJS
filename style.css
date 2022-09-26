@@ -1,3 +1,8 @@
+.inputYear, .inputMonth {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
 .month {
   width: 500px;
   border: 1px solid red;
